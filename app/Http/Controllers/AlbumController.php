@@ -40,4 +40,15 @@ class AlbumController extends Controller
 
         return redirect()->route('album.index')->with('success', 'Album berhasil dibuat!');
     }
+
+    public function show($id)
+    {
+        $album = Album::with('fotos')->findOrFail($id);
+
+        if ($album->user_id != Auth::id()) {
+            return redirect()->route('album.index');
+        }
+
+        return view ('album.show', compact('album'));
+    }
 }

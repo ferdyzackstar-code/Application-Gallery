@@ -54,4 +54,15 @@ class FotoController extends Controller
         return redirect()->route('album.index')->with('success', 'Foto berhasil diunggah!');
     }
     
+    public function destroy($id)
+    {
+        $foto = Foto::findOrFail($id);
+
+        if ($foto->user_id == Auth::id()) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($foto->LokasiFile);
+            $foto->delete();
+        }
+
+        return back()->with('success', 'Foto berhasil dihapus!');
+    }
 }

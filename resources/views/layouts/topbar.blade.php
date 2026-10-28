@@ -40,7 +40,7 @@
 </style>
 
 <nav class="navbar">
-    <a href="/" class="logo">UKK Gallery</a>
+    <a href="/" class="logo">Application Gallery</a>
     <div class="nav-icons">
         <a href="/" title="Beranda">🏠</a>
         <a href="{{ route('foto.create') }}" title="Tambah Foto">➕</a>

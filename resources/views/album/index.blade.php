@@ -160,8 +160,8 @@
             <!-- Kotak-kotak Album -->
             <div class="album-grid">
                 @foreach ($albums as $album)
-                    <!-- Nantinya kotak ini bisa diklik untuk melihat foto di dalam album tersebut -->
-                    <a href="#" class="album-box">
+                    <!-- Link sekarang mengarah ke album.show -->
+                    <a href="{{ route('album.show', $album->id) }}" class="album-box">
                         {{ $album->NamaAlbum }}
                     </a>
                 @endforeach

@@ -177,18 +177,29 @@
                     <div class="post-likes">{{ $foto->likes()->count() }} Likes</div>
 
                     <div class="post-caption">
-                        <strong>{{ $foto->user->username }}</strong> {{ $foto->DeskripsiFoto }}
+                        <strong>{{ $foto->user->Username }}</strong> {{ $foto->DeskripsiFoto }}
                     </div>
 
                     <!-- Format tanggal sederhana -->
                     <div class="post-date">{{ $foto->TanggalUnggah }}</div>
                 </div>
 
-                <!-- Tempat ketik komentar (akan kita fungsikan nanti) -->
-                <div class="post-comment-box">
-                    <input type="text" placeholder="Tambahkan komentar...">
-                    <button type="button">Post</button>
+                <!-- Area Daftar Komentar -->
+                <div style="padding: 0 15px 10px; font-size: 13px;">
+                    @foreach ($foto->komentars as $komentar)
+                        <div style="margin-bottom: 4px;">
+                            <strong>{{ $komentar->user->Username }}</strong> {{ $komentar->IsiKomentar }}
+                        </div>
+                    @endforeach
                 </div>
+
+                <!-- Form Input Komentar Asli -->
+                <form action="{{ route('foto.komentar', $foto->id) }}" method="POST" class="post-comment-box">
+                    @csrf
+                    <input type="text" name="IsiKomentar" placeholder="Tambahkan komentar..." required
+                        autocomplete="off">
+                    <button type="submit">Post</button>
+                </form>
             </div>
         @empty
             <div class="empty-feed">
