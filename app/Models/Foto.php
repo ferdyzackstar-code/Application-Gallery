@@ -8,12 +8,12 @@ class Foto extends Model
 {
     protected $guarded = [];
 
-    public function likefotos()
+    public function likes()
     {
         return $this->hasMany(LikeFoto::class, 'foto_id');
     }
     
-    public function komentarfotos()
+    public function komentars()
     {
         return $this->hasMany(KomentarFoto::class, 'foto_id');
     }
